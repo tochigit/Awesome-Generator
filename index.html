@@ -33,8 +33,10 @@
         <select id="length"><option value="short">Short (quick response)</option><option value="medium">Medium (detailed)</option><option value="long">Long (in-depth)</option></select>
         <p class="topic-message" id="topicMessage" role="alert" aria-live="polite" hidden>Please enter a topic or rough idea.</p>
         <button onclick="generatePrompt()">Generate Prompt</button>
-        <div id="output"></div>
-        <button id="copyBtn" onclick="copyToClipboard()">Copy</button>
+        <div class="output-wrap">
+            <div id="output"></div>
+            <button id="copyBtn" onclick="copyToClipboard()">Copy</button>
+        </div>
     </main>
 
     <script src="js/script.js" defer></script>

@@ -133,8 +133,9 @@ button:not(#copyBtn) { background: linear-gradient(135deg, #4CAF50, #3d9140); co
 button:not(#copyBtn):hover { background: linear-gradient(135deg, #55c45a, #429a46); transform: translateY(-2px); box-shadow: 0 10px 22px rgba(76, 175, 80, 0.5); }
 button:not(#copyBtn):active { transform: translateY(0); }
 
-#output { background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.2); padding: 20px; border-radius: 12px; margin-top: 20px; white-space: pre-wrap; position: relative; line-height: 1.6; font-size: 15px; min-height: 20px; }
-#copyBtn { position: absolute; top: 10px; right: 10px; width: auto; background: #2196F3; color: white; border: none; padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; display: none; box-shadow: 0 4px 10px rgba(33, 150, 243, 0.4); transition: background 0.3s ease, transform 0.2s ease; }
+.output-wrap { position: relative; margin-top: 20px; }
+#output { background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.2); padding: 20px; padding-right: 88px; border-radius: 12px; white-space: pre-wrap; line-height: 1.6; font-size: 15px; min-height: 20px; }
+#copyBtn { position: absolute; top: 10px; right: 10px; width: auto; margin: 0; background: #2196F3; color: white; border: none; padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; display: none; box-shadow: 0 4px 10px rgba(33, 150, 243, 0.4); transition: background 0.3s ease, transform 0.2s ease; }
 #copyBtn:hover { background: #1e88e5; transform: translateY(-1px); }
 
 @media (max-width: 480px) {

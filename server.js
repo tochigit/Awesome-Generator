@@ -25,7 +25,7 @@ const server = http.createServer((request, response) => {
                     return;
                 }
 
-                const userInput = `Category: ${category}\nMood: ${mood}\nTopic/idea: ${topic}\nLength: ${length}\n\nTurn this into a highly effective, detailed prompt ready to copy-paste into Grok, ChatGPT, or Claude. Make it structured, clear, and optimized for best results.`;
+                const userInput = `Category: ${category}\nMood: ${mood}\nTopic/idea: ${topic}\nLength: ${length}\n\nCreate one highly effective, detailed prompt ready to paste into an AI assistant. Return only the finished prompt text. Do not say hello, introduce the prompt, explain your choices, add labels such as "Here is your prompt", wrap it in quotation marks, or add a closing note.`;
                 const providerResponse = await fetch(process.env.API_BASE_URL, {
                     method: 'POST',
                     headers: {
@@ -36,7 +36,7 @@ const server = http.createServer((request, response) => {
                     body: JSON.stringify({
                         model: process.env.API_MODEL,
                         messages: [
-                            { role: 'system', content: 'You are an expert prompt engineer. Create optimized prompts that get the best output from Grok, ChatGPT, and Claude. Make responses complete and detailed without unnecessary truncation.' },
+                            { role: 'system', content: 'You are an expert prompt engineer. Return only the final paste-ready prompt. Never include a preamble, greeting, explanation, quotation marks, markdown fence, or closing commentary. The first character of your response must be the beginning of the prompt itself.' },
                             { role: 'user', content: userInput }
                         ],
                         temperature: 0.7,
