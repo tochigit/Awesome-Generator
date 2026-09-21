@@ -28,7 +28,8 @@
         <label for="mood">Mood:</label>
         <select id="mood"><option value="fun">Fun &amp; Lighthearted</option><option value="serious">Serious &amp; Professional</option><option value="creative">Creative &amp; Imaginative</option><option value="motivational">Motivational &amp; Inspiring</option><option value="humorous">Humorous &amp; Witty</option></select>
         <label for="topic">Topic or idea (be as detailed as possible):</label>
-        <textarea id="topic" rows="4" placeholder="Be specific: describe your goal, audience, context, constraints, examples, and the kind of result you want."></textarea>
+        <textarea id="topic" rows="4" aria-describedby="topicHint" placeholder="Be specific: describe your goal, audience, context, constraints, examples, and the kind of result you want."></textarea>
+        <p class="topic-hint" id="topicHint">Hint: say what you want, who it is for, the important background, any limits, and what a good result should look like. For example: “Create a 3-day beginner workout plan for someone with no equipment.”</p>
         <label for="length">Prompt Length:</label>
         <select id="length"><option value="short">Short (quick response)</option><option value="medium">Medium (detailed)</option><option value="long">Long (in-depth)</option></select>
         <p class="topic-message" id="topicMessage" role="alert" aria-live="polite" hidden>Please enter a topic or rough idea.</p>
