@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <title>AI Prompt Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="splash" aria-hidden="true"></div>
+
+    <a class="github-badge" href="https://github.com/tochigit/Awesome-Generator" target="_blank" rel="noopener noreferrer" aria-label="Star this project on GitHub">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        <span>Star on GitHub</span>
+    </a>
+
+    <main class="container">
+        <h1>AI Prompt Generator for Grok, ChatGPT, or Claude</h1>
+        <label for="category">Category:</label>
+        <select id="category"><option value="writing">Writing (stories, essays)</option><option value="coding">Coding (scripts, bugs)</option><option value="flirting">Flirting (fun chats)</option><option value="roasts">Roasts (humorous burns)</option><option value="study">Study Notes (learning)</option><option value="other">Other (general)</option></select>
+        <label for="mood">Mood:</label>
+        <select id="mood"><option value="fun">Fun &amp; Lighthearted</option><option value="serious">Serious &amp; Professional</option><option value="creative">Creative &amp; Imaginative</option><option value="motivational">Motivational &amp; Inspiring</option><option value="humorous">Humorous &amp; Witty</option></select>
+        <label for="topic">Topic (e.g., "space travel" or "Python loops"):</label>
+        <input type="text" id="topic" placeholder="Enter your topic here">
+        <label for="length">Prompt Length:</label>
+        <select id="length"><option value="short">Short (quick response)</option><option value="medium">Medium (detailed)</option><option value="long">Long (in-depth)</option></select>
+        <button onclick="generatePrompt()">Generate Prompt</button>
+        <div id="output"></div>
+        <button id="copyBtn" onclick="copyToClipboard()">Copy</button>
+    </main>
+
+    <div class="modal-backdrop" id="topicModal" hidden>
+        <section class="topic-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <div class="modal-sheen"></div>
+            <p class="modal-kicker">Input required</p>
+            <h2 id="modalTitle">Give your idea somewhere to start.</h2>
+            <p class="modal-copy">Add a topic, question, or rough thought and the generator will shape it into a polished prompt.</p>
+            <button class="modal-confirm" id="modalConfirm" type="button">Okay <span id="modalCountdown">5</span></button>
+        </section>
+    </div>
+    <script src="js/script.js" defer></script>
+</body>
+</html>
