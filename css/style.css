@@ -153,18 +153,4 @@ button:not(#copyBtn):active { transform: translateY(0); }
 /* The brighter splash keeps the original palette while making the background more visible. */
 .splash { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse at center, transparent 28%, rgba(255, 255, 255, 0.08) 29%, transparent 46%), radial-gradient(ellipse at 70% 30%, rgba(255, 255, 255, 0.12), transparent 30%); animation: splashPulse 8s ease-in-out infinite; }
 @keyframes splashPulse { 50% { transform: scale(1.08); opacity: 0.7; } }
-
-.modal-backdrop { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 20px; background: rgba(20, 24, 80, 0.65); backdrop-filter: blur(12px); }
-.modal-backdrop[hidden] { display: none; }
-.topic-modal { width: min(100%, 430px); position: relative; overflow: hidden; padding: 34px; color: #fff; background: linear-gradient(145deg, rgba(106, 17, 203, 0.97), rgba(37, 117, 252, 0.98)); border: 1px solid rgba(255, 255, 255, 0.55); border-radius: 20px; box-shadow: 0 25px 90px rgba(0, 0, 0, 0.5), 0 0 42px rgba(72, 177, 255, 0.3); animation: modalIn 0.35s cubic-bezier(.17, .84, .44, 1.2); }
-.topic-modal::after { content: ''; position: absolute; width: 130px; height: 42px; top: -15px; right: 36px; border-radius: 50%; background: #9edcff; filter: blur(12px); opacity: 0.5; }
-.modal-sheen { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.18) 45%, transparent 65%); transform: translateX(-110%); animation: sheen 2.8s ease-in-out infinite; }
-.modal-kicker { position: relative; margin: 0 0 10px; color: #dceeff; font: 500 12px 'DM Mono', monospace; letter-spacing: 0.12em; text-transform: uppercase; }
-.topic-modal h2 { position: relative; margin: 0; font-family: 'Poppins', sans-serif; font-size: 28px; line-height: 1.05; }
-.modal-copy { position: relative; margin: 16px 0 8px; color: #e0edff; line-height: 1.55; }
-.modal-confirm { position: relative; z-index: 1; margin-bottom: 0; }
-.modal-confirm span { display: inline-block; min-width: 1ch; color: #dceeff; font-family: 'DM Mono', monospace; }
-.modal-confirm.is-breaking { animation: breakModal 0.48s ease forwards; }
-@keyframes modalIn { from { opacity: 0; transform: scale(.82) rotate(-3deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
-@keyframes sheen { 55%, 100% { transform: translateX(110%); } }
-@keyframes breakModal { 20% { transform: translateX(-8px) rotate(-2deg); } 45% { transform: translateX(8px) rotate(2deg); } 100% { opacity: 0; transform: scale(1.12) rotate(4deg); filter: blur(8px); } }
+.topic-message { margin: 12px 0 -8px; color: #ffe4e4; font-size: 13px; font-weight: 600; }

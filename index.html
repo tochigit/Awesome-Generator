@@ -31,20 +31,12 @@
         <input type="text" id="topic" placeholder="Enter your topic here">
         <label for="length">Prompt Length:</label>
         <select id="length"><option value="short">Short (quick response)</option><option value="medium">Medium (detailed)</option><option value="long">Long (in-depth)</option></select>
+        <p class="topic-message" id="topicMessage" role="alert" aria-live="polite" hidden>Please enter a topic or rough idea.</p>
         <button onclick="generatePrompt()">Generate Prompt</button>
         <div id="output"></div>
         <button id="copyBtn" onclick="copyToClipboard()">Copy</button>
     </main>
 
-    <div class="modal-backdrop" id="topicModal" hidden>
-        <section class="topic-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-            <div class="modal-sheen"></div>
-            <p class="modal-kicker">Input required</p>
-            <h2 id="modalTitle">Give your idea somewhere to start.</h2>
-            <p class="modal-copy">Add a topic, question, or rough thought and the generator will shape it into a polished prompt.</p>
-            <button class="modal-confirm" id="modalConfirm" type="button">Okay <span id="modalCountdown">5</span></button>
-        </section>
-    </div>
     <script src="js/script.js" defer></script>
 </body>
 </html>

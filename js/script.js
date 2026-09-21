@@ -1,39 +1,14 @@
-const topicModal = document.getElementById('topicModal');
-const modalConfirm = document.getElementById('modalConfirm');
-const modalCountdown = document.getElementById('modalCountdown');
 const topicInput = document.getElementById('topic');
-let countdownTimer;
-
-function showTopicModal() {
-    clearInterval(countdownTimer);
-    topicModal.hidden = false;
-    modalConfirm.classList.remove('is-breaking');
-    let secondsLeft = 5;
-    modalCountdown.textContent = secondsLeft;
-    modalConfirm.focus();
-    countdownTimer = setInterval(() => {
-        secondsLeft -= 1;
-        modalCountdown.textContent = secondsLeft;
-        if (secondsLeft <= 0) clearInterval(countdownTimer);
-    }, 1000);
-}
-
-function closeTopicModal() {
-    clearInterval(countdownTimer);
-    modalConfirm.classList.add('is-breaking');
-    setTimeout(() => {
-        topicModal.hidden = true;
-        modalConfirm.classList.remove('is-breaking');
-        topicInput.focus();
-    }, 450);
-}
+const topicMessage = document.getElementById('topicMessage');
 
 async function generatePrompt() {
     const topic = topicInput.value.trim();
     if (!topic) {
-        showTopicModal();
+        topicMessage.hidden = false;
+        topicInput.focus();
         return;
     }
+    topicMessage.hidden = true;
 
     const output = document.getElementById('output');
     output.textContent = 'Generating smart prompt...';
@@ -68,10 +43,3 @@ function copyToClipboard() {
     navigator.clipboard.writeText(text).catch((error) => console.error('Copy failed:', error));
 }
 
-modalConfirm.addEventListener('click', closeTopicModal);
-topicModal.addEventListener('click', (event) => {
-    if (event.target === topicModal) closeTopicModal();
-});
-document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && !topicModal.hidden) closeTopicModal();
-});
