@@ -20,17 +20,21 @@ const server = http.createServer((request, response) => {
         request.on('end', async () => {
             try {
                 const { category, mood, topic, length } = JSON.parse(rawBody);
-                if (!topic || !process.env.GROQ_API_KEY) {
-                    sendJson(response, 400, { error: 'A topic and GROQ_API_KEY are required.' });
+                if (!topic || !process.env.API_KEY || !process.env.API_BASE_URL || !process.env.API_MODEL) {
+                    sendJson(response, 400, { error: 'A topic, API_KEY, API_BASE_URL, and API_MODEL are required.' });
                     return;
                 }
 
                 const userInput = `Category: ${category}\nMood: ${mood}\nTopic/idea: ${topic}\nLength: ${length}\n\nTurn this into a highly effective, detailed prompt ready to copy-paste into Grok, ChatGPT, or Claude. Make it structured, clear, and optimized for best results.`;
-                const groqResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                const providerResponse = await fetch(process.env.API_BASE_URL, {
                     method: 'POST',
-                    headers: { 'Authorization': `Bearer ${process.env.GROQ_API_KEY}`, 'Content-Type': 'application/json' },
+                    headers: {
+                        'Authorization': `Bearer ${process.env.API_KEY}`,
+                        'Content-Type': 'application/json',
+                        ...(process.env.API_EXTRA_HEADERS ? JSON.parse(process.env.API_EXTRA_HEADERS) : {})
+                    },
                     body: JSON.stringify({
-                        model: 'llama-3.3-70b-versatile',
+                        model: process.env.API_MODEL,
                         messages: [
                             { role: 'system', content: 'You are an expert prompt engineer. Create optimized prompts that get the best output from Grok, ChatGPT, and Claude. Make responses complete and detailed without unnecessary truncation.' },
                             { role: 'user', content: userInput }
@@ -40,8 +44,8 @@ const server = http.createServer((request, response) => {
                         stream: false
                     })
                 });
-                const data = await groqResponse.json();
-                if (!groqResponse.ok) throw new Error(data.error?.message || `Groq API error: ${groqResponse.status}`);
+                const data = await providerResponse.json();
+                if (!providerResponse.ok) throw new Error(data.error?.message || data.message || `Provider API error: ${providerResponse.status}`);
                 sendJson(response, 200, { prompt: data.choices[0].message.content.trim() });
             } catch (error) {
                 sendJson(response, 500, { error: error.message });
