@@ -25,7 +25,7 @@ const server = http.createServer((request, response) => {
                     return;
                 }
 
-                const userInput = `Category: ${category}\nMood: ${mood}\nTopic/idea: ${topic}\nLength: ${length}\n\nCreate one highly effective, detailed prompt ready to paste into an AI assistant. Return only the finished prompt text. Do not say hello, introduce the prompt, explain your choices, add labels such as "Here is your prompt", wrap it in quotation marks, or add a closing note.`;
+                const userInput = `Category: ${category}\nMood: ${mood}\nUser's topic or idea: ${topic}\nRequested prompt length: ${length}\n\nTransform this into one exceptional, model-agnostic prompt that works well with any capable AI system, regardless of provider, model, or interface. The user may have provided incomplete information. Infer sensible missing details and include practical assumptions, while keeping the prompt easy for the eventual user to customize. Build the prompt around a clear objective, relevant context, intended audience, constraints, required inputs, step-by-step expectations where useful, output format, quality criteria, and a request for clarification only when a missing detail would materially change the result. Match the requested mood and length. Return only the finished prompt text. Do not say hello, introduce the prompt, explain your choices, add labels such as "Here is your prompt", wrap it in quotation marks, or add a closing note.`;
                 const providerResponse = await fetch(process.env.API_BASE_URL, {
                     method: 'POST',
                     headers: {
@@ -36,7 +36,7 @@ const server = http.createServer((request, response) => {
                     body: JSON.stringify({
                         model: process.env.API_MODEL,
                         messages: [
-                            { role: 'system', content: 'You are an expert prompt engineer. Return only the final paste-ready prompt. Never include a preamble, greeting, explanation, quotation marks, markdown fence, or closing commentary. The first character of your response must be the beginning of the prompt itself.' },
+                            { role: 'system', content: 'You are a senior prompt engineer with more than seven years of professional experience designing reliable prompts for writing, research, analysis, coding, education, planning, and creative work. You have advanced training in instructional design, human-computer interaction, language models, and structured communication. Your job is to turn rough or incomplete ideas into precise, useful, model-agnostic prompts that work across providers and model families. Never invent user-specific facts; use clearly stated assumptions when needed. Return only the final paste-ready prompt. Never include a preamble, greeting, explanation, credentials, quotation marks, markdown fence, or closing commentary. The first character of your response must be the beginning of the prompt itself.' },
                             { role: 'user', content: userInput }
                         ],
                         temperature: 0.7,
